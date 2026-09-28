@@ -1,0 +1,20 @@
+import matplotlib.pyplot as plt
+import pandas as pd
+data = [
+    ("Mahir Ahmed", 9, 13, 30, 35),
+    ("Mehedi Hasan", 8, 11, 28, 32),
+    ("Nabila Jaman", 10, 14, 33, 36),
+    ("Ashik Sarker", 7, 10, 25, 28),
+    ("Samina Akter", 6, 8, 22, 25),
+    ("Rafia Afroz", 10, 15, 34, 38),
+    ("Jabir Hossain", 8, 11, 26, 30)
+]
+df = pd.DataFrame(data, columns=['Name', 'A', 'Q', 'Asgn', 'F'])
+df['Total'] = df.iloc[:, 1:].sum(axis=1)
+df = df.sort_values(by='Total')
+plt.barh(df['Name'], df['Total'], color='skyblue')
+plt.axvline(df['Total'].mean(), color='red', linestyle='--', label='Average')
+plt.xlabel('Total Score')
+plt.legend()
+plt.tight_layout()
+plt.show()

@@ -1,0 +1,23 @@
+import pandas as pd
+student_data = [
+    ("262-16-201", "Mahir Ahmed", 9, 13, 30, 35),
+    ("262-16-202", "Mehedi Hasan", 8, 11, 28, 32),
+    ("262-16-203", "Nabila Jaman", 10, 14, 33, 36),
+    ("262-16-204", "Ashik Sarker", 7, 10, 25, 28),
+    ("262-16-205", "Samina Akter", 6, 8, 22, 25),
+    ("262-16-206", "Rafia Afroz", 10, 15, 34, 38),
+    ("262-16-207", "Jabir Hossain", 8, 11, 26, 30)
+]
+columns = ['Student_ID', 'Name', 'Attendance', 'Quiz', 'Assignment', 'Final']
+df = pd.DataFrame(student_data, columns=columns)
+df['Total_Score'] = df['Attendance'] + df['Quiz'] + df['Assignment'] + df['Final']
+highest_idx = df['Total_Score'].idxmax()
+highest_student = df.loc[highest_idx]
+lowest_idx = df['Total_Score'].idxmin()
+lowest_student = df.loc[lowest_idx]
+class_average = df['Total_Score'].mean()
+print(f"Class Average Score : {class_average:.2f} / 100")
+print(f"Highest Scorer: {highest_student['Name']} ({highest_student['Student_ID']})")
+print(f"Total Score: {highest_student['Total_Score']} out of 100")
+print(f"Lowest Scorer: {lowest_student['Name']} ({lowest_student['Student_ID']})")
+print(f"Total Score: {lowest_student['Total_Score']} out of 100")
